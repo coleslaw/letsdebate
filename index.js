@@ -4,6 +4,7 @@ var app     = express();
 var bodyParser = require('body-parser');
 var hbs     = require('hbs');
 var method  = require('method-override');
+require('dotenv').load();
 var port    = process.env.PORT || 4000;
 var uri     = process.env.MONGOLAB_URI || "mongodb://localhost/wittily";
 var mongoose = require('mongoose');
@@ -17,7 +18,6 @@ app.set('views', './views');
 app.set('view engine', 'hbs');
 // app setup
 app.use(express.static(__dirname + '/public'));
-// require('dotenv').load();
 
 // our routes
 app.get('/', function(req, res) {
