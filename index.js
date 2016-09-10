@@ -5,10 +5,12 @@ var bodyParser = require('body-parser');
 var hbs     = require('hbs');
 var method  = require('method-override');
 var port    = process.env.PORT || 4000;
+var uri     = process.env.MONGOLAB_URI || "mongodb://localhost/wittily";
 
+require('dotenv').load();
 // Database setup
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/wittily')
+mongoose.connect(uri)
 
 // Set up view engins
 app.set('views', './views');
