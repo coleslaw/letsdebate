@@ -12,10 +12,10 @@ require('dotenv').load();
 var mongoose = require('mongoose');
 mongoose.connect(uri)
 
+app.set('port', (port);
 // Set up view engins
 app.set('views', './views');
 app.set('view engine', 'hbs');
-
 // app setup
 app.use(express.static(__dirname + '/public'));
 
