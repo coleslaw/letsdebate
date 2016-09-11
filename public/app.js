@@ -19,18 +19,15 @@ app.controller("ScreenCtrl", ["$scope", "$firebaseObject", "$window", function($
       $scope.queriedObject = $scope.data[topicId];
     }
 
+
     $scope.addAgreeLikes = function(argumentId) {
       $scope.queriedObject.arguments[argumentId].likes++;
       $scope.queriedObject.agree_score++;
-      $scope.$apply();
-      $scope.$digest();
     }
 
     $scope.addDisagreeLikes = function(argumentId) {
       $scope.queriedObject.arguments[argumentId].likes++;
       $scope.queriedObject.disagree_score++;
-      $scope.$apply();
-      $scope.$digest();
     }
 
 
@@ -110,3 +107,16 @@ app.controller("ScreenCtrl", ["$scope", "$firebaseObject", "$window", function($
 //   }
 // ]
 // }
+app.filter('orderObjectBy', function() {
+  return function(items, field, reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    filtered.sort(function (a, b) {
+      return (a[field] > b[field] ? 1 : -1);
+    });
+    if(reverse) filtered.reverse();
+    return filtered;
+  };
+});
