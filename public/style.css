@@ -91,7 +91,7 @@ h3 {
     padding-left: 15px;
     padding-right: 15px;
 }
-.speech-right>.speech {
+.speech-right > div >.speech {
     /*border: 1px solid #37c654;*/
     border-radius: 10px;
     background: #4080ff;
@@ -143,10 +143,10 @@ h3 {
 }
 
 #negate-score {
-  background: red;
+  background: #4080ff;
 }
 #affirm-score {
-  background: #4080ff;
+  background: #f1f0f0;
 }
 @media (max-width: 600px) {
   .articleScreen {

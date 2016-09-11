@@ -24,8 +24,26 @@
 
    <link rel="stylesheet" href="public/style.css">
 
+
+
   </head>
   <body ng-app="ngWittily">
+    <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : "1806620009616014",
+        xfbml      : true,
+        version    : "v2.7"
+      });
+    };
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
 
     <div class="navbar-fixed">
     <nav style="height: 60px;">
@@ -36,7 +54,7 @@
      </nav>
    </div>
   <div class="section" ng-controller="ScreenCtrl">
-    <div>
+
     <div class="row">
       <div class="col l4 s12" id="chatScreen" style="margin-top: 50px; margin-left: 50px; margin-right: -75px;display:none;">
           <div class="card">
@@ -49,7 +67,7 @@
           <div id="score">
             <div class="row">
               <div class="col l6 s6 score-card" id="affirm-score">
-                <h3>{{queriedObject.agree_score}}</h3>
+                <h3 style="color: #4080ff;">{{queriedObject.agree_score}}</h3>
               </div>
               <div class="col l6 s6 score-card" id="negate-score">
                 <h3>{{queriedObject.disagree_score}}</h3>
@@ -59,33 +77,54 @@
 
       				<div class="nano-content pad-all">
       					<ul class="list-unstyled media-block">
-      						<li class="mar-btm" ng-repeat="argument in queriedObject.arguments | orderBy: 'id'">
+      						<li class="mar-btm" ng-repeat="argument in queriedObject.arguments | orderBy: '-id'">
                     <div ng-if="argument.agree">
         							<div class="media-left">
         								<!-- <img src={{chat.photo}} class="circle img-sm" alt="Profile Picture" width="100%"> -->
         							</div>
         							<div class="media-body pad-hor">
-        								<div class="speech">
-        									<p>{{argument.text}}</p>
-                          <p class="speech-time">
-                            <i class="fa fa-heart-o fa-fw" ng-click="addAgreeLikes(argument.id, argument)";></i> {{argument.likes}}
-                          </p>
-        								</div>
+
+                        <div ng-if="argument.text">
+          								<div class="speech">
+          									<p>{{argument.text}}</p>
+                            <p class="speech-time">
+                              <i class="fa fa-heart-o fa-fw" ng-click="addAgreeLikes(argument.id)";></i> {{argument.likes}}
+                            </p>
+          								</div>
+                        </div>
+
+                        <div ng-if="argument.photo_link">
+                          <div class="speech">
+                            <img src="{{argument.photo_link}}" alt="Photo" width="100%;">
+                            <p class="speech-time">
+                              <i class="fa fa-heart-o fa-fw" ng-click="addAgreeLikes(argument.id)";></i> {{argument.likes}}
+                            </p>
+                          </div>
+                        </div>
 
         							</div>
                     </div>
                     <div ng-if="!argument.agree">
+                      <!-- <div class="media-right">
 
-                      <div class="media-right">
-                        <!-- <img src={{chat.photo}} class="circle img-sm" alt="Profile Picture"> -->
-                      </div>
+                      </div> -->
                       <div class="media-body pad-hor speech-right">
+                        <div ng-if="argument.text">
                         <div class="speech">
-                          <p>{{argument.text}}</p>
+                            <p>{{argument.text}}</p>
+                            <p class="speech-time">
+                              <i class="fa fa-heart-o fa-fw" ng-click="addDisagreeLikes(argument.id);"></i> {{argument.likes}}
+                            </p>
+                        </div>
+                        </div>
+                        <div ng-if="argument.photo_link">
+                          <div class="speech">
+                          <img src="{{argument.photo_link}}" alt="Disagree Photo" width="100%;">
                           <p class="speech-time">
                             <i class="fa fa-heart-o fa-fw" ng-click="addDisagreeLikes(argument.id, argument);"></i> {{argument.likes}}
                           </p>
                         </div>
+                      </div>
 
                       </div>
                     </div>

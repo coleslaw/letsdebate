@@ -3,8 +3,9 @@ console.log("im not crazy");
 var app = angular.module("ngWittily", ["firebase"]);
 
 //Creating controller
-app.controller("ScreenCtrl", ["$scope", "$firebaseObject", function($scope,  $firebaseArray)
+app.controller("ScreenCtrl", ["$scope", "$firebaseObject", "$window", function($scope,  $firebaseArray, $window)
 {
+
     var ref = new Firebase("https://letsdebate-acb88.firebaseio.com/topics");
     // download the data into a local object
     var syncArray = $firebaseArray(ref);
@@ -21,12 +22,15 @@ app.controller("ScreenCtrl", ["$scope", "$firebaseObject", function($scope,  $fi
     $scope.addAgreeLikes = function(argumentId) {
       $scope.queriedObject.arguments[argumentId].likes++;
       $scope.queriedObject.agree_score++;
+      $scope.$apply();
+      $scope.$digest();
     }
 
     $scope.addDisagreeLikes = function(argumentId) {
       $scope.queriedObject.arguments[argumentId].likes++;
       $scope.queriedObject.disagree_score++;
-
+      $scope.$apply();
+      $scope.$digest();
     }
 
 
