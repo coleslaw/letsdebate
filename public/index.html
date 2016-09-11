@@ -79,14 +79,14 @@
 
       				<div class="nano-content pad-all" tabindex="0" style="right: -17px;">
       					<ul class="list-unstyled media-block">
-      						<li class="mar-btm" ng-repeat="chat in data.topics.arguments | orderBy: 'id'">
-                    <div ng-if="chat.agree">
+      						<li class="mar-btm" ng-repeat="argument in queriedObject.arguments | orderBy: 'id'">
+                    <div ng-if="argument.agree">
         							<div class="media-left">
-        								<img src={{chat.photo}} class="circle img-sm" alt="Profile Picture" width="100%">
+        								<!-- <img src={{chat.photo}} class="circle img-sm" alt="Profile Picture" width="100%"> -->
         							</div>
         							<div class="media-body pad-hor">
         								<div class="speech">
-        									<p>{{chat.text}}</p>
+        									<p>{{argument.text}}</p>
         								</div>
                         <i class="fa fa-heart" ng-click=affirmAddOne();></i>
         							</div>
@@ -94,12 +94,12 @@
                     <div ng-if="!chat.agree">
 
                       <div class="media-right">
-                        <img src={{chat.photo}} class="circle img-sm" alt="Profile Picture">
+                        <!-- <img src={{chat.photo}} class="circle img-sm" alt="Profile Picture"> -->
                       </div>
                       <div class="media-body pad-hor speech-right">
                         <i class="fa fa-heart" ng-click=negAddOne();></i>
                         <div class="speech">
-                          <p>{{chat.text}}</p>
+                          <p>{{argument.text}}</p>
                         </div>
 
                       </div>
