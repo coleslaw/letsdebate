@@ -1,0 +1,28 @@
+{
+  "name": "wittily",
+  "version": "1.0.0",
+  "description": "Political Chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VienVan/Wittily.git"
+  },
+  "author": "Wittily",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VienVan/Wittily/issues"
+  },
+  "homepage": "https://github.com/VienVan/Wittily#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.5",
+    "hbs": "^4.0.0",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.6.0"
+  }
+}
