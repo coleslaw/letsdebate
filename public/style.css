@@ -1,6 +1,10 @@
 body{
     /*margin-top:20px;*/
     background:#ebeef0;
+    font-family: Quicksand;
+}
+.card-title {
+  text-shadow: 0 0 10px black;
 }
 nav {
   background: white;
