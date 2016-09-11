@@ -138,10 +138,21 @@ h3 {
     -webkit-transition: all .7s;
     transition: all .7s;
 }
+.articleScreen {
+  transform: translateX(25%);
+}
 
 #negate-score {
   background: red;
 }
 #affirm-score {
   background: #4080ff;
+}
+@media (max-width: 600px) {
+  .articleScreen {
+    transform: translateX(0%);
+  }
+  #chatScreen {
+    margin: 0 !important;
+  }
 }

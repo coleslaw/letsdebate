@@ -35,32 +35,12 @@
        </div>
      </nav>
    </div>
-  <div class="section" ng-controller="ScreenCtrl" style="margin-left: 35px;">
-
+  <div class="section" ng-controller="ScreenCtrl">
+    <div>
     <div class="row">
-      <div class="col l8" style="margin-top: 50px;"  >
-        <div class="row" style="width: 75%;">
-           <div class="col s12">
-             <div class="card" ng-repeat="article in data">
-               <div class="card-image" ng-click="showDetails(article.id)">
-                 <img src="{{article.cover_photo}}">
-                 <span class="card-title">{{article.title}}</span>
-               </div>
-               <div class="card-content">
-                 <p>I am a very simple card. I am good at containing small bits of information.
-                 I am convenient because I require little markup to use effectively.</p>
-               </div>
-               <div class="card-action">
-                 <a href="#">This is a link</a>
-               </div>
-             </div>
-           </div>
-         </div>
-
-      </div>
-      <div class="col l4" style="margin-top: -50px;">
+      <div class="col l4 s12" id="chatScreen" style="margin-top: 50px; margin-left: 50px; margin-right: -75px;display:none;">
           <div class="card">
-          <div id="topic">
+          <div id="topic" class="box-a">
             <img src="{{queriedObject.cover_photo}}" alt="Topic" width="100%;">
             <div class="card-content">
               <p>{{queriedObject.title}}</p>
@@ -68,16 +48,16 @@
           </div>
           <div id="score">
             <div class="row">
-              <div class="col l6 score-card" id="affirm-score">
-                <h3>{{affirmScore}}</h3>
+              <div class="col l6 s6 score-card" id="affirm-score">
+                <h3>{{queriedObject.agree_score}}</h3>
               </div>
-              <div class="col l6 score-card" id="negate-score">
-                <h3>{{negateScore}}</h3>
+              <div class="col l6 s6 score-card" id="negate-score">
+                <h3>{{queriedObject.disagree_score}}</h3>
               </div>
             </div>
           </div>
 
-      				<div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+      				<div class="nano-content pad-all">
       					<ul class="list-unstyled media-block">
       						<li class="mar-btm" ng-repeat="argument in queriedObject.arguments | orderBy: 'id'">
                     <div ng-if="argument.agree">
@@ -87,19 +67,24 @@
         							<div class="media-body pad-hor">
         								<div class="speech">
         									<p>{{argument.text}}</p>
+                          <p class="speech-time">
+                            <i class="fa fa-heart-o fa-fw" ng-click="addAgreeLikes(argument.id, argument)";></i> {{argument.likes}}
+                          </p>
         								</div>
-                        <i class="fa fa-heart" ng-click=affirmAddOne();></i>
+
         							</div>
                     </div>
-                    <div ng-if="!chat.agree">
+                    <div ng-if="!argument.agree">
 
                       <div class="media-right">
                         <!-- <img src={{chat.photo}} class="circle img-sm" alt="Profile Picture"> -->
                       </div>
                       <div class="media-body pad-hor speech-right">
-                        <i class="fa fa-heart" ng-click=negAddOne();></i>
                         <div class="speech">
                           <p>{{argument.text}}</p>
+                          <p class="speech-time">
+                            <i class="fa fa-heart-o fa-fw" ng-click="addDisagreeLikes(argument.id, argument);"></i> {{argument.likes}}
+                          </p>
                         </div>
 
                       </div>
@@ -119,12 +104,29 @@
       					</ul>
       				</div>
 
-
-
-
-
       </div>
       </div>
+      <div class="col l8 s12 articleScreen" style="margin-top: 50px;">
+        <div class="row" style="width: 75%;">
+           <div class="col s12">
+             <div class="card" ng-repeat="article in data">
+               <div class="card-image" ng-click="showDetails(article.id)">
+                 <img src="{{article.cover_photo}}">
+                 <span class="card-title">{{article.title}}</span>
+               </div>
+               <div class="card-content">
+                 <p>{{article.description}}</p>
+               </div>
+               <!-- <div class="card-action">
+                 <a href="#">This is a link</a>
+               </div> -->
+             </div>
+           </div>
+         </div>
+
+      </div>
+
+
   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

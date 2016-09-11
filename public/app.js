@@ -12,21 +12,23 @@ app.controller("ScreenCtrl", ["$scope", "$firebaseObject", function($scope,  $fi
     // click on `index.html` above to see it used in the DOM!
     syncArray.$bindTo($scope, "data");
 
-
-    $scope.affirmScore = 0;
-    $scope.negateScore = 0;
-
-    $scope.negAddOne = function() {
-      $scope.negateScore++;
-    }
-
-    $scope.affirmAddOne = function() {
-      $scope.affirmScore++;
-    }
-
     $scope.showDetails = function(topicId) {
+      $('#chatScreen').css('display', 'block');
+      $('.articleScreen').css('transform', 'translateX(0%)');
       $scope.queriedObject = $scope.data[topicId];
     }
+
+    $scope.addAgreeLikes = function(argumentId) {
+      $scope.queriedObject.arguments[argumentId].likes++;
+      $scope.queriedObject.agree_score++;
+    }
+
+    $scope.addDisagreeLikes = function(argumentId) {
+      $scope.queriedObject.arguments[argumentId].likes++;
+      $scope.queriedObject.disagree_score++;
+
+    }
+
 
     // $scope.arguments = $scope.data.topics.arguments
     // $scope.arguments = [
