@@ -39,6 +39,7 @@
    </div>
   <div class="section" ng-controller="ScreenCtrl">
 
+
     <div class="row">
       <div class="col l4 s12" id="chatScreen" style="margin-top: 50px; margin-left: 50px; margin-right: -75px;display:none;">
           <div class="card">
@@ -115,16 +116,6 @@
                       </div>
                     </div>
       						</li>
-      						<!-- <li class="mar-btm" ng-repeat="negateChat in chat.negateChats">
-      							<div class="media-right">
-      								<img src={{negateChat.pic}} class="img-circle img-sm" alt="Profile Picture">
-      							</div>
-      							<div class="media-body pad-hor speech-right">
-      								<div class="speech">
-      									<p>{{negateChat.argument}}</p>
-      								</div>
-      							</div>
-      						</li> -->
 
       					</ul>
       				</div>
@@ -132,10 +123,11 @@
       </div>
       </div>
       <div class="col l8 s12 articleScreen" style="margin-top: 50px;">
+
         <div class="row" style="width: 75%;">
            <div class="col s12">
              <div class="card" ng-repeat="article in data">
-               <div class="card-image" ng-click="showDetails(article.id)">
+               <div class="card-image" id="{{article.id}}" ng-click="showDetails(article.id)">
                  <img src="{{article.cover_photo}}">
                  <span class="card-title">{{article.title}}</span>
                </div>
