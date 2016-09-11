@@ -6,7 +6,6 @@ var app = angular.module("ngWittily", ["firebase"]);
 app.controller("ScreenCtrl", ["$scope", "$firebaseObject", "$window", function($scope,  $firebaseArray, $window)
 {
 
-
     var ref = new Firebase("https://letsdebate-acb88.firebaseio.com/topics");
     // download the data into a local object
     var syncArray = $firebaseArray(ref);
@@ -21,7 +20,7 @@ app.controller("ScreenCtrl", ["$scope", "$firebaseObject", "$window", function($
       setInterval(function () {
          console.log($scope.queriedObject.id);
          $('#'+$scope.queriedObject.id).click();
-       }, 5000);
+       }, 1000);
     }
 
 
@@ -54,6 +53,6 @@ app.filter('orderObjectBy', function() {
       return (a[field] > b[field] ? 1 : -1);
     });
     if(reverse) filtered.reverse();
-    return filtered.reverse();
+    return filtered;
   };
 });
